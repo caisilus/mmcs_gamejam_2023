@@ -1,5 +1,6 @@
 $gtk.reset
 
+require "app/debug_helpers"
 require "app/scene_manager"
 
 require "app/ui_kit/button"
