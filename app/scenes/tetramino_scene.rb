@@ -11,8 +11,14 @@ class TetraminoScene < Scene
     super(args)
 
     @cell_primitive = Border.new(color: Color.white)
-    @grid = Tetramino::Grid.new(rows: 5, cols: 10, position: [640, 500], cell_size: CELL_SIZE,
-                                cell_primitive: @cell_primitive)
+    @mask = [[false, true, true, true, true, false],
+             [true, false, true, true, false, true],
+             [true, true, true, true, true, true],
+             [true, false, true, true, false, true],
+             [false, true, true, true, true, false]
+            ]
+    @grid = Tetramino::Grid.new(rows: 5, cols: 6, position: [640, 500], cell_size: CELL_SIZE,
+                                cell_primitive: @cell_primitive, mask: @mask)
 
     @background_color = Color.gray
     setup_figures(:long_straight, :t_shaped)

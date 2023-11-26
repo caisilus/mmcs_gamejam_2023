@@ -13,9 +13,9 @@ module Tetramino
       @anchor_x, @anchor_y = anchor_x, anchor_y
       self.w = cols * cell_size
       self.h = rows * cell_size
-      set_mask(mask)
       set_cell_primitive(cell_primitive)
       set_grid(rows, cols)
+      set_mask(mask)
     end
 
     private
@@ -37,11 +37,10 @@ module Tetramino
           @grid_elements[i][j] = grid_element_at(i, j)
         end
       end
-      puts @grid_elements
     end
 
     def grid_element_at(i, j)
-      return nil unless has_element_at?(i, j)
+      return nil unless cell_exists?(i, j)
 
       left_corner_x, left_corner_y = left_upper_corner
 
@@ -57,11 +56,22 @@ module Tetramino
     end
 
     def set_mask(mask)
+      puts @grid.length
+      puts @grid[0].length
+
       return if mask.nil? or mask[0].nil?
 
       return if mask.length != @grid.length or mask[0].length != @grid[0].length
 
       @mask = mask
+
+      @grid_elements.each_with_index do |row, i|
+        row.each_with_index do |_, j|
+          next if @mask[i][j]
+
+          @grid_elements[i][j] = nil
+        end
+      end
     end
 
     def left_upper_corner
@@ -78,9 +88,10 @@ module Tetramino
     def render args
       @grid_elements.each_with_index do |row, i|
         row.each_with_index do |element, j|
-          next unless has_element_at?(i, j)
+          next unless cell_exists?(i, j)
 
           element.render args
+          debug_grid_cell(args, i, j)
         end
       end
     end
@@ -94,7 +105,16 @@ module Tetramino
       Debug.draw_point(args, x: x, y: y)
     end
 
-    def has_element_at?(i, j)
+    def debug_grid_cell(args, i, j)
+      return if @grid[i][j].nil?
+
+      x, y = @grid_elements[i][j].center
+      Debug.draw_point(args, x: x, y: y, size: @cell_size, color: Color.green)
+    end
+
+    public
+
+    def cell_exists?(i, j)
       @mask.nil? or @mask[i][j]
     end
 
@@ -126,8 +146,6 @@ module Tetramino
 
       figure.x += distance_vector[0]
       figure.y += distance_vector[1]
-
-      puts @grid
     end
 
     private
@@ -154,11 +172,11 @@ module Tetramino
 
     def take_figure(figure)
       @grid.each_with_index do |row, i|
-        j = row.index(figure)
+        row.each_with_index do |cell_value, j|
+          next if cell_value != figure
 
-        next if j.nil?
-
-        @grid[i][j] = nil
+          @grid[i][j] = nil
+        end
       end
     end
   end
