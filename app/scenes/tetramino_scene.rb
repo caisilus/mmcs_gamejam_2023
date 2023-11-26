@@ -60,9 +60,9 @@ class TetraminoScene < Scene
 
   def on_mouse_up_draggable(draggable)
     if @grid.figure_can_be_placed?(draggable)
-      @figures_hand.delete draggable if @figures_hand.include?(draggable)
-
       @grid.place_figure(draggable)
+
+      @figures_hand.delete draggable if @figures_hand.include?(draggable)
     else
       @grid.take_figure(draggable)
 
@@ -79,5 +79,15 @@ class TetraminoScene < Scene
     return if @figures_hand.include?(draggable)
 
     @grid.take_figure(draggable)
+  end
+
+  def tick args
+    super(args)
+
+    win if @figures_hand.empty?
+  end
+
+  def win
+    args.state.scene_manager.next_level(args)
   end
 end

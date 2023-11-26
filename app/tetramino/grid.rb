@@ -56,9 +56,6 @@ module Tetramino
     end
 
     def set_mask(mask)
-      puts @grid.length
-      puts @grid[0].length
-
       return if mask.nil? or mask[0].nil?
 
       return if mask.length != @grid.length or mask[0].length != @grid[0].length
