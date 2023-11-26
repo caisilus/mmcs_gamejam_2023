@@ -17,12 +17,15 @@ class SolitaireScene < Scene
     @args = args
     setup_ui
     setup_board
+    @transition_timer = 60
+    @transition_duration = 60
+    @transition_speed = 720.0 / @transition_duration
     @card_under_mouse = nil
   end
 
   def setup_ui
     @bg_color = [49, 139, 87]
-    @finish_turn_button = Button.new(x: 1150, y: 70, w: 150, h: 70, color: BUTTON_COLOR, text: "Finish turn",
+    @finish_turn_button = Button.new(x: 1150, y: 70 - SCREEN_HEIGHT, w: 150, h: 70, color: BUTTON_COLOR, text: "Finish turn",
                                      text_color: BUTTON_TEXT_COLOR, anchor_x: 0.5, anchor_y: 0.5)
 
     @finish_turn_button.on_mouse_click do
@@ -35,7 +38,7 @@ class SolitaireScene < Scene
 
   def setup_board
     @deck_manager = DeckManager.new
-    @deck_area = { x: 0, y: 0, w: 1280, h: Card::CARD_HEIGHT + 2 * MARGIN_BOTTOM, anchor_x: 0, anchor_y: 0 }
+    @deck_area = { x: 0, y: 0 - SCREEN_HEIGHT, w: 1280, h: Card::CARD_HEIGHT + 2 * MARGIN_BOTTOM, anchor_x: 0, anchor_y: 0 }
                     .merge(DECK_AREA_COLOR.serialize)
     @board = []
     draw_hand
@@ -78,7 +81,7 @@ class SolitaireScene < Scene
   end
 
   def compute_card_positions_in_hand
-    y = Card::CARD_HEIGHT / 2 + MARGIN_BOTTOM
+    y = Card::CARD_HEIGHT / 2 + MARGIN_BOTTOM - SCREEN_HEIGHT
     hand_width = @hand.length * Card::CARD_WIDTH + (@hand.length - 1) * SPACE_BETWEEN_CARDS
     x = (SCREEN_WIDTH - hand_width) / 2 + Card::CARD_WIDTH / 2
     @hand.each do |card|
@@ -86,6 +89,13 @@ class SolitaireScene < Scene
       card.y = y
       x += Card::CARD_WIDTH + SPACE_BETWEEN_CARDS
     end
+  end
+
+  def move_elements_up(transition_frame)
+    @hand.each { |card| card.y += transition_frame }
+    @board.each { |card| card.y += transition_frame }
+    @deck_area.y += transition_frame
+    @finish_turn_button.y += transition_frame
   end
 
   def process_input
@@ -143,9 +153,18 @@ class SolitaireScene < Scene
     end
   end
 
+  def handle_scene_transition
+    if @transition_timer > 0
+      transition_frame = @transition_speed
+      move_elements_up(transition_frame)
+      @transition_timer -= 1
+    end
+  end
+
   def tick args
     @args = args
 
+    handle_scene_transition
     draw_hand if args.state.tick_count == 0
 
     super args
