@@ -26,4 +26,16 @@ class Color
   def self.gray(value=90)
     Color.new(value, value, value)
   end
+
+  def self.red(value=255)
+    Color.new(value, 0, 0)
+  end
+
+  def self.green(value=255)
+    Color.new(0, value, 0)
+  end
+
+  def self.blue(value=255)
+    Color.new(0, 0, value)
+  end
 end

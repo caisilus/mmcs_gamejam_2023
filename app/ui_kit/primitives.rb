@@ -20,6 +20,14 @@ class Primitive
 
   def render args
     args.outputs.primitives << self
+    # debug_pivots args
+  end
+
+  def debug_pivots(args)
+    x, y = center
+    Debug.draw_point(args, x: x, y: y, color: Color.green)
+    x, y = left_upper_corner
+    Debug.draw_point(args, x: x, y: y, color: Color.blue)
   end
 
   def serialize
@@ -40,6 +48,19 @@ class Primitive
   def to_s
     serialize.to_s
   end
+
+  def left_upper_corner
+    [x - anchor_x * w, y + (1 - anchor_y) * h]
+  end
+
+  def center
+    leftmost_x, highest_y = left_upper_corner
+    [leftmost_x + w / 2, highest_y - h / 2].map(&:to_i)
+  end
+
+  def inside_rect?(rect)
+    serialize.inside_rect?(rect.serialize)
+  end
 end
 
 class Solid < Primitive
@@ -56,7 +77,7 @@ class Sprite < Primitive
   attr_accessor :path, :angle, :angle_anchor_x, :angle_anchor_y,  :tile_x, :tile_y, :tile_w, :tile_h,
                 :source_x, :source_y, :source_w, :source_h, :flip_horizontally, :flip_vertically
 
-  def initialize(x: nil, y: nil, w: nil, h: nil, path: nil, color: nil, anchor_x: 0.5, anchor_y: 0.5)
+  def initialize(x: nil, y: nil, w: nil, h: nil, path: nil, color: Color.white, anchor_x: 0.5, anchor_y: 0.5)
     super(x: x, y: y, w: w, h: h, color: color, anchor_x: anchor_x, anchor_y: anchor_y)
     self.path = path
   end

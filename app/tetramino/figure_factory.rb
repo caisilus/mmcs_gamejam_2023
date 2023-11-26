@@ -22,18 +22,18 @@ module Tetramino
       w = 4 * @cell_size
       h = @cell_size
 
-      figure = Figure.new(w: h, h: w, path: path, grid_mask: grid_mask)
+      figure = Figure.new(w: h, h: w, path: path, grid_mask: grid_mask, cell_size: @cell_size)
 
       figure
     end
 
     def t_shaped
       path = @figures_folder_path + "T.png"
-      grid_mask = [[true, false], [true, true], [true, false]]
+      grid_mask = [[false, true, false], [true, true, true]]
       w = 3 * @cell_size
       h = 2 * @cell_size
 
-      Figure.new(w: w, h: h, path: path, grid_mask: grid_mask)
+      Figure.new(w: w, h: h, path: path, grid_mask: grid_mask, cell_size: @cell_size)
     end
   end
 end
