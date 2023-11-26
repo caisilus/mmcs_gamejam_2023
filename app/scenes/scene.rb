@@ -60,7 +60,8 @@ class Scene
     return if @draggables.empty?
 
     if mouse_leave_draggable?
-      on_mouse_leave_draggable
+      draggable_under_mouse = args.state.draggable_under_mouse
+      on_mouse_leave_draggable(draggable_under_mouse)
       return
     end
 
@@ -75,38 +76,38 @@ class Scene
   end
 
   def process_draggable_under_mouse
-    on_mouse_over_draggable
+    draggable = args.state.draggable_under_mouse
+    on_mouse_over_draggable(draggable)
 
     if args.inputs.mouse.click
-      on_mouse_click_draggable
+      on_mouse_click_draggable(draggable)
     elsif args.inputs.mouse.held
-      on_mouse_held_draggable
+      on_mouse_held_draggable(draggable)
     elsif args.inputs.mouse.up
-      draggable = args.state.draggable_under_mouse
-      draggable_dropped(draggable)
+      on_mouse_up_draggable(draggable)
     end
   end
 
   protected
 
-  def on_mouse_leave_draggable
-    args.state.draggable_under_mouse.on_mouse_leave args
+  def on_mouse_leave_draggable(draggable)
+    draggable.on_mouse_leave args
     args.state.draggable_under_mouse = nil
   end
 
-  def on_mouse_over_draggable
-    args.state.draggable_under_mouse.on_mouse_over args
+  def on_mouse_over_draggable(draggable)
+    draggable.on_mouse_over args
   end
 
-  def on_mouse_click_draggable
+  def on_mouse_click_draggable(draggable)
     args.state.draggable_under_mouse.on_mouse_click args
   end
 
-  def on_mouse_held_draggable
+  def on_mouse_held_draggable(draggable)
     args.state.draggable_under_mouse.on_mouse_held args
   end
 
-  def draggable_dropped(draggable)
+  def on_mouse_up_draggable(draggable)
     draggable.on_mouse_up args
   end
 end

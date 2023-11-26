@@ -93,7 +93,7 @@ class SolitaireScene < Scene
     super
   end
 
-  def draggable_dropped(draggable)
+  def on_mouse_up_draggable(draggable)
     super(draggable)
 
     unless args.geometry.intersect_rect?(draggable.serialize, @deck_area)

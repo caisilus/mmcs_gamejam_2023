@@ -149,5 +149,17 @@ module Tetramino
 
       return nil
     end
+
+    public
+
+    def take_figure(figure)
+      @grid.each_with_index do |row, i|
+        j = row.index(figure)
+
+        next if j.nil?
+
+        @grid[i][j] = nil
+      end
+    end
   end
 end
