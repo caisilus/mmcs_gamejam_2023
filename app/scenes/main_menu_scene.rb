@@ -23,6 +23,13 @@ class MainMenuScene < Scene
     @fullscreen_button.on_mouse_click do |button, args|
       args.state.scene_manager.go_fullscreen(args,button)
     end
+
+     @credit_button = Button.new(x: 640, y: 100, w: 300, h: 80, color: Color.new(60, 60, 60, 100),
+                              text_color: Color.new(250, 250, 250), text: "Credits")
+
+    @credit_button.on_mouse_click do |button, args|
+      args.state.scene_manager.show_credits(args)
+    end
   end
 
   def render_ui
