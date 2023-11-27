@@ -3,8 +3,9 @@ $gtk.reset
 class Scene
   attr_reader :args
 
-  def initialize
-    @args = nil
+  def initialize(args)
+    @args = args
+    @draggables = []
   end
 
   private def search_buttons
@@ -29,12 +30,19 @@ class Scene
   end
 
   def process_input
+    process_buttons
+    process_draggables
+  end
+
+  private
+
+  def process_buttons
     @__buttons__.each do |button|
       process_button button if button.active?
     end
   end
 
-  private def process_button button
+  def process_button button
     if args.inputs.mouse.intersect_rect?(button.button_body)
       button.trigger_mouse_hover(args)
 
@@ -46,6 +54,61 @@ class Scene
     end
 
     button.trigger_mouse_leave(args)
+  end
+
+  def process_draggables
+    return if @draggables.empty?
+
+    if mouse_leave_draggable?
+      draggable_under_mouse = args.state.draggable_under_mouse
+      on_mouse_leave_draggable(draggable_under_mouse)
+      return
+    end
+
+    args.state.draggable_under_mouse ||= @draggables.find { |draggable| draggable.intersect_with_mouse?(args) }
+
+    process_draggable_under_mouse unless args.state.draggable_under_mouse.nil?
+  end
+
+  def mouse_leave_draggable?
+    draggable = args.state.draggable_under_mouse
+    !args.state.dragging && !draggable.nil? && !draggable.intersect_with_mouse?(args)
+  end
+
+  def process_draggable_under_mouse
+    draggable = args.state.draggable_under_mouse
+    on_mouse_over_draggable(draggable)
+
+    if args.inputs.mouse.click
+      on_mouse_click_draggable(draggable)
+    elsif args.inputs.mouse.held
+      on_mouse_held_draggable(draggable)
+    elsif args.inputs.mouse.up
+      on_mouse_up_draggable(draggable)
+    end
+  end
+
+  protected
+
+  def on_mouse_leave_draggable(draggable)
+    draggable.on_mouse_leave args
+    args.state.draggable_under_mouse = nil
+  end
+
+  def on_mouse_over_draggable(draggable)
+    draggable.on_mouse_over args
+  end
+
+  def on_mouse_click_draggable(draggable)
+    args.state.draggable_under_mouse.on_mouse_click args
+  end
+
+  def on_mouse_held_draggable(draggable)
+    args.state.draggable_under_mouse.on_mouse_held args
+  end
+
+  def on_mouse_up_draggable(draggable)
+    draggable.on_mouse_up args
   end
 end
 
