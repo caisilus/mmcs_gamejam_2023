@@ -6,7 +6,7 @@ module Tetramino
 
     attr_accessor :grid_mask, :logical_w, :logical_h
 
-    def initialize(x: nil, y: nil, w: nil, h: nil, path: nil, color: nil, anchor_x: 0.5, anchor_y: 0.5,
+    def initialize(x: nil, y: nil, w: nil, h: nil, path: nil, color: Color.white, anchor_x: 0.5, anchor_y: 0.5,
                    grid_mask: [[true]], cell_size: 50)
       super(x: x, y: y, w: w, h: h, path: path, color: color, anchor_x: anchor_x, anchor_y: anchor_y)
 

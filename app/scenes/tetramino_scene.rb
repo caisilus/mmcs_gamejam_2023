@@ -1,41 +1,42 @@
 $gtk.reset
 
 class TetraminoScene < Scene
-  CELL_SIZE = 50
   GAP_BETWEEN_FIGURES = 50
   MARGIN_BOTTOM = 20
   SCREEN_WIDTH = 1280
   SCREEN_HEIGHT = 720
 
-  def initialize args
+  def initialize(args, cell_primitive: Solid.new(color: black),
+                       bg_color: Color.gray, bg_image: nil, mask: nil, grid_position: [640, 360], figures: [])
     super(args)
 
-    setup_background
-    setup_grid
-    setup_figures(:long_straight, :t_shaped)
+    setup_background(bg_color, bg_image)
+    setup_cell(cell_primitive)
+    setup_grid(mask, grid_position)
+    setup_figures(figures)
   end
 
-  def setup_background
-    @background_color = Color.gray
+  def setup_background(bg_color, bg_image)
+    @background_color = bg_color
+    @background_image = bg_image
   end
 
-  def setup_grid
-    @cell_primitive = Solid.new(color: Color.black)
+  def setup_cell(cell_primitive)
+    @cell_primitive = cell_primitive
+    @cell_size = cell_primitive.w
+  end
 
-    @mask = [[false, true, true, true, true, false],
-             [true, false, true, true, false, true],
-             [true, true, true, true, true, true],
-             [true, false, true, true, false, true],
-             [false, true, true, true, true, false]]
+  def setup_grid(mask, grid_position)
+    @mask = mask
+    rows = @mask.length
+    cols = @mask[0].length
 
-    @grid = Tetramino::Grid.new(rows: 5, cols: 6, position: [640, 500], cell_size: CELL_SIZE,
+    @grid = Tetramino::Grid.new(rows: rows, cols: cols, position: grid_position, cell_size: @cell_size,
                                 cell_primitive: @cell_primitive, mask: @mask)
   end
 
-  def setup_figures(*figure_names)
-    @figure_factory = Tetramino::FigureFactory.new(CELL_SIZE)
-
-    @figures_hand = figure_names.map { |f_name| @figure_factory.build_figure(f_name) }
+  def setup_figures(figures)
+    @figures_hand = figures.clone
     position_figures_in_hand
 
     @draggables = @figures_hand.clone
@@ -58,12 +59,17 @@ class TetraminoScene < Scene
 
   def render
     super
-    args.outputs.background_color = @background_color.pack
+    render_background
     @grid.render args
 
     @draggables.each do |figure|
       figure.render args
     end
+  end
+
+  def render_background
+    args.outputs.background_color = @background_color.pack
+    @background_image.render args
   end
 
   def on_mouse_up_draggable(draggable)
