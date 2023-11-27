@@ -135,11 +135,12 @@ module Tetramino
       return segment_inside_grid_cell
     end
 
-    def place_figure(figure)
+    def place_figure(args, figure)
       distance_vector = [0, 0]
       figure.segments_centers_solids.each do |segment|
         distance_vector = place_segment(figure, segment)
       end
+      #args.outputs.sounds << "sounds/pop.wav"
 
       figure.x += distance_vector[0]
       figure.y += distance_vector[1]

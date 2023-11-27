@@ -61,7 +61,8 @@ class Button
       y: y,
       anchor_x: anchor_x,
       anchor_y: anchor_y,
-      text: text
+      text: text,
+      font: "fonts/ofont.ru_Impact.ttf"
     }.merge(text_color.serialize)
   end
 

@@ -38,4 +38,22 @@ class SceneManager
     @index += 1
     @index = 0 if @index == @queue.length
   end
+
+  def show_credits(args)
+    args.state.next_scene = :credit
+  end
+
+  def back_to_menu(args)
+    args.state.next_scene = :main_menu
+  end
+
+  def go_fullscreen(args,button)
+    if args.gtk.window_fullscreen?
+      args.gtk.set_window_fullscreen false
+      button.text = "Fullscreen on"
+    else
+      args.gtk.set_window_fullscreen true
+      button.text = "Fullscreen off"
+    end
+  end
 end
