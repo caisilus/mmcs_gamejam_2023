@@ -14,17 +14,16 @@ class MainMenuScene < Scene
       args.state.scene_manager.next_level(args)
     end
 
-    @settings_button = Button.new(x: 640, y: 300, w: 300, h: 80, color: Color.new(60, 60, 60, 100),
-                              text_color: Color.new(250, 250, 250), text: "Settings")
+
     
-    @fullscreen_button = Button.new(x: 640, y: 200, w: 300, h: 80, color: Color.new(60, 60, 60, 100),
+    @fullscreen_button = Button.new(x: 640, y: 300, w: 300, h: 80, color: Color.new(60, 60, 60, 100),
                               text_color: Color.new(250, 250, 250), text: "Fullscreen on")
 
     @fullscreen_button.on_mouse_click do |button, args|
       args.state.scene_manager.go_fullscreen(args,button)
     end
 
-     @credit_button = Button.new(x: 640, y: 100, w: 300, h: 80, color: Color.new(60, 60, 60, 100),
+     @credit_button = Button.new(x: 640, y: 200, w: 300, h: 80, color: Color.new(60, 60, 60, 100),
                               text_color: Color.new(250, 250, 250), text: "Credits")
 
     @credit_button.on_mouse_click do |button, args|
