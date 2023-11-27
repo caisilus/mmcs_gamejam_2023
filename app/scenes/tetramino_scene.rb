@@ -110,6 +110,7 @@ class TetraminoScene < Scene
   end
 
   def win
+    args.outputs.sounds << "sounds/zipper.wav"
     args.state.scene_manager.next_level(args)
   end
 end

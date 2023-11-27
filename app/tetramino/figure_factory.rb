@@ -36,49 +36,49 @@ module Tetramino
       puts path
       grid_mask = [[true], [true], [true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "menu.wav")
     end
 
     def hus_cloth
       path = @figures_folder_path + "hus_cloth.png"
       grid_mask = [[true, true], [true, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
     def son_cloth
       path = @figures_folder_path + "son_cloth.png"
       grid_mask = [[true, true], [true, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
     def penal_blue
       path = @figures_folder_path + "penal_blue.png"
       grid_mask = [[true, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
     def penal_son
       path = @figures_folder_path + "penal_son.png"
       grid_mask = [[true, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
     def book
       path = @figures_folder_path + "book.png"
       grid_mask = [[true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "door_1.wav")
     end
 
     def camera
       path = @figures_folder_path + "camera.png"
       grid_mask = [[true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "menu.wav")
     end
 
     def dau_cloth
@@ -86,7 +86,7 @@ module Tetramino
       grid_mask = [[true, true],
                    [true, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
     def fan
@@ -94,7 +94,7 @@ module Tetramino
       grid_mask = [[true, true],
                    [true, false]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "menu.wav")
     end
 
     def hangers
@@ -102,35 +102,35 @@ module Tetramino
       grid_mask = [[true, true, true],
                    [false, true, false]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "menu.wav")
     end
 
     def jacket
       path = @figures_folder_path + "jacket.png"
       grid_mask = [[true, true, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
     def medkit
       path = @figures_folder_path + "medkit.png"
       grid_mask = [[true, true, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask , "door_1.wav")
     end
 
     def dau_penal
       path = @figures_folder_path + "pink_penal.png"
       grid_mask = [[true, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
     def wif_penal
       path = @figures_folder_path + "red_penal.png"
       grid_mask = [[true, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
     def dau_boots
@@ -138,7 +138,7 @@ module Tetramino
       grid_mask = [[false, true, true],
                    [true, true, false]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
 
@@ -148,7 +148,7 @@ module Tetramino
                    [true, false],
                    [true, false],]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
     def wif_hat
@@ -156,7 +156,7 @@ module Tetramino
       grid_mask = [[true, true, true],
                    [false, true, false]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
     def wif_shoes
@@ -164,7 +164,7 @@ module Tetramino
       grid_mask = [[false, true, true],
                    [true, true, false]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
     def wif_tall_boots
@@ -173,7 +173,7 @@ module Tetramino
                    [true, false],
                    [true, false],]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
     def steam_gen
@@ -181,7 +181,7 @@ module Tetramino
       grid_mask = [[true, true],
                    [true, false]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "menu.wav")
     end
 
 
@@ -189,14 +189,14 @@ module Tetramino
       path = @figures_folder_path + "towel.png"
       grid_mask = [[true, true, true, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
     def yoga_carpet
       path = @figures_folder_path + "yoga_carpet.png"
       grid_mask = [[true, true, true, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
     def wif_cloth
@@ -204,14 +204,14 @@ module Tetramino
       grid_mask = [[true, true],
                    [true, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
     def antifreez
       path = @figures_folder_path + "antifreez.png"
       grid_mask = [[true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "door.wav")
     end
 
     def domcrat
@@ -220,14 +220,14 @@ module Tetramino
                    [true, true],
                    [false, true],]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "menu.wav")
     end
 
     def extinguisher
       path = @figures_folder_path + "extinguisher.png"
       grid_mask = [[false, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "menu.wav")
     end
 
     def fomka
@@ -235,7 +235,7 @@ module Tetramino
       grid_mask = [[true, true],
                    [true, false ]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
     def gray_bag
@@ -244,7 +244,7 @@ module Tetramino
                    [true, true],
                    [true, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "cloth.wav")
     end
 
     def hatch
@@ -252,7 +252,7 @@ module Tetramino
       grid_mask = [[true, true],
                    [false, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "menu.wav")
     end
 
     def pink_bag
@@ -261,14 +261,14 @@ module Tetramino
                    [true, true, true],
                    [true, true, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask,  "cloth.wav")
     end
 
     def ski
       path = @figures_folder_path + "ski.png"
       grid_mask = [[true, true, true, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "door_1.wav")
     end
 
     def snowboard
@@ -278,23 +278,23 @@ module Tetramino
                    [true],
                    [true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "door_1.wav")
     end
 
     def thermos
       path = @figures_folder_path + "thermos.png"
       grid_mask = [[true, true]]
 
-      make_figure(path, grid_mask)
+      make_figure(path, grid_mask, "door_1.wav")
     end
 
     private
 
-    def make_figure(path, grid_mask)
+    def make_figure(path, grid_mask, sound = "pop.wav")
       w = grid_mask[0].length * @cell_size
       h = grid_mask.length * @cell_size
 
-      Figure.new(w: w, h: h, path: path, grid_mask: grid_mask, cell_size: @cell_size)
+      Figure.new(w: w, h: h, path: path, grid_mask: grid_mask, cell_size: @cell_size, sound: sound)
     end
   end
 end

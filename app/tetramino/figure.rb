@@ -7,7 +7,7 @@ module Tetramino
     attr_accessor :grid_mask, :logical_w, :logical_h, :sound
 
     def initialize(x: nil, y: nil, w: nil, h: nil, path: nil, color: Color.white, anchor_x: 0.5, anchor_y: 0.5,
-                   grid_mask: [[true]], cell_size: 50, sound: 'pop.wav')
+                   grid_mask: [[true]], cell_size: 50, sound: "pop.wav")
 
       super(x: x, y: y, w: w, h: h, path: path, color: color, anchor_x: anchor_x, anchor_y: anchor_y)
 
@@ -17,7 +17,7 @@ module Tetramino
       @logical_w = w
       @logical_h = h
 
-      @sound = self.sound
+      @sound = sound
     end
 
     def left_upper_corner

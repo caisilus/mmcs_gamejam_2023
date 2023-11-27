@@ -160,6 +160,7 @@ class MemoryCardGame < Scene
       args.outputs.labels << [10, 690, "Matched Pairs: #{matched_pairs}"]
 
       if game_over
+        args.outputs.sounds << "sounds/zipper.wav"
         args.state.scene_manager.next_level(args)
       else
         draw

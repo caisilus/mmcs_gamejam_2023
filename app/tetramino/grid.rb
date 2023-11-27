@@ -140,7 +140,7 @@ module Tetramino
       figure.segments_centers_solids.each do |segment|
         distance_vector = place_segment(figure, segment)
       end
-      #args.outputs.sounds << "sounds/pop.wav"
+      args.outputs.sounds << "sounds/" + figure.sound
 
       figure.x += distance_vector[0]
       figure.y += distance_vector[1]
