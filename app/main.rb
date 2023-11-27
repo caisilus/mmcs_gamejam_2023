@@ -13,7 +13,7 @@ def tick args
                         }
 
 
-  args.state.scene_manager ||= SceneManager.new(args.state.scenes, :tetramino1 , queue: [:memo1, :memo2, :tetramino1, :tetramino2, :tetramino3])
+  args.state.scene_manager ||= SceneManager.new(args.state.scenes, :main_menu , queue: [:memo1, :memo2, :tetramino1, :tetramino2, :tetramino3, :credit])
 
   if args.state.tick_count == 1
     args.audio[:music] = { input: "sounds/ambient.wav", looping: true }
