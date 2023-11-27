@@ -7,7 +7,7 @@ def tick args
                           memo2: MemoryCardGame.new(args, cards_per_row: 4, cards_per_column: 3, level: 2 )
                         }
 
-  args.state.scene_manager ||= SceneManager.new(args.state.scenes, :memo1, queue: [:memo1, :memo2, :tetramino, :solitaire])
+  args.state.scene_manager ||= SceneManager.new(args.state.scenes, :main_menu, queue: [:memo1, :memo2, :tetramino, :solitaire])
 
   args.state.scene_manager.tick args
 end
