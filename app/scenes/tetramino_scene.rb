@@ -10,18 +10,26 @@ class TetraminoScene < Scene
   def initialize args
     super(args)
 
+    setup_background
+    setup_grid
+    setup_figures(:long_straight, :t_shaped)
+  end
+
+  def setup_background
+    @background_color = Color.gray
+  end
+
+  def setup_grid
     @cell_primitive = Solid.new(color: Color.black)
+
     @mask = [[false, true, true, true, true, false],
              [true, false, true, true, false, true],
              [true, true, true, true, true, true],
              [true, false, true, true, false, true],
-             [false, true, true, true, true, false]
-            ]
+             [false, true, true, true, true, false]]
+
     @grid = Tetramino::Grid.new(rows: 5, cols: 6, position: [640, 500], cell_size: CELL_SIZE,
                                 cell_primitive: @cell_primitive, mask: @mask)
-
-    @background_color = Color.gray
-    setup_figures(:long_straight, :t_shaped)
   end
 
   def setup_figures(*figure_names)
