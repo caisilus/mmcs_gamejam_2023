@@ -68,7 +68,7 @@ class TetraminoScene < Scene
 
   def on_mouse_up_draggable(draggable)
     if @grid.figure_can_be_placed?(draggable)
-      @grid.place_figure(draggable)
+      @grid.place_figure(args, draggable)
 
       @figures_hand.delete draggable if @figures_hand.include?(draggable)
     else

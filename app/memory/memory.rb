@@ -52,6 +52,7 @@ class MemoryCardGame < Scene
     def handle_input(x, y)
       return if @game_over
 
+      args.outputs.sounds << "sounds/fold.wav"
       clicked_card = find_clicked_card(x, y)
 
       return if clicked_card.nil?
@@ -80,6 +81,7 @@ class MemoryCardGame < Scene
 
       x = ($gtk.args.grid.center_x - (@cards_per_row * (@card_width + @card_spacing)) / 2) + col * (@card_width + @card_spacing)
       y = ($gtk.args.grid.center_y - (@cards_per_column * (@card_height + @card_spacing)) / 2) + row * (@card_height + @card_spacing)
+
 
       draw_face = @revealed_cards.include?(index) || index == @selected_card
       draw_card_back(x, y) unless draw_face
