@@ -28,11 +28,11 @@ class MainMenuScene < Scene
   def render_ui
     args.outputs.background_color = [0, 0, 0]
     super
-    args.outputs.sprites << { x: 0,
-    y: 0,
-    w: 1280,
-    h: 720,
-    path: 'sprites/background.png',
+    args.outputs.sprites << { x: 460,
+    y: 400,
+    w: 348,
+    h: 304,
+    path: 'sprites/logo.png',
     angle: args.state.rotation }
   end
 end
