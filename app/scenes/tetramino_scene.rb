@@ -10,7 +10,7 @@ class TetraminoScene < Scene
   def initialize args
     super(args)
 
-    @cell_primitive = Border.new(color: Color.white)
+    @cell_primitive = Solid.new(color: Color.black)
     @mask = [[false, true, true, true, true, false],
              [true, false, true, true, false, true],
              [true, true, true, true, true, true],
@@ -79,6 +79,14 @@ class TetraminoScene < Scene
     return if @figures_hand.include?(draggable)
 
     @grid.take_figure(draggable)
+  end
+
+  def on_mouse_held_draggable(draggable)
+    super
+
+    return unless args.inputs.keyboard.key_up.r
+
+    draggable.rotate_90
   end
 
   def tick args

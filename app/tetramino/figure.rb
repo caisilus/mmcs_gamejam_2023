@@ -4,7 +4,7 @@ module Tetramino
   class Figure < Sprite
     include Draggable
 
-    attr_accessor :grid_mask
+    attr_accessor :grid_mask, :logical_w, :logical_h
 
     def initialize(x: nil, y: nil, w: nil, h: nil, path: nil, color: nil, anchor_x: 0.5, anchor_y: 0.5,
                    grid_mask: [[true]], cell_size: 50)
@@ -12,6 +12,18 @@ module Tetramino
 
       @grid_mask = grid_mask
       @cell_size = cell_size
+
+      @logical_w = w
+      @logical_h = h
+    end
+
+    def left_upper_corner
+      [x - anchor_x * @logical_w, y + (1 - anchor_y) * @logical_h]
+    end
+
+    def center
+      leftmost_x, highest_y = left_upper_corner
+      [leftmost_x + @logical_w / 2, highest_y - @logical_h / 2].map(&:to_i)
     end
 
     def first_segment_center
@@ -56,5 +68,18 @@ module Tetramino
         args.outputs.solids << solid
       end
     end
-  end
+
+    def rotate_90
+      self.angle ||= 0
+      self.angle -= 90
+      @logical_w, @logical_h = @logical_h, @logical_w
+      rotate_mask_90
+    end
+
+    private
+
+    def rotate_mask_90
+      @grid_mask = @grid_mask.transpose.map(&:reverse)
+    end
+   end
 end
