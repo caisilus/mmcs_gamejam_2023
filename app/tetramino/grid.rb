@@ -88,7 +88,7 @@ module Tetramino
           next unless cell_exists?(i, j)
 
           element.render args
-          debug_grid_cell(args, i, j)
+            # debug_grid_cell(args, i, j)
         end
       end
     end

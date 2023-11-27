@@ -59,15 +59,6 @@ module Tetramino
       centers.map { |p| Solid.new(x: p[0], y: p[1], w: 10, h: 10, color: Color.red) }
     end
 
-    def render args
-      super args
-
-      centers_solids = segments_centers_solids
-
-      centers_solids.each do |solid|
-        args.outputs.solids << solid
-      end
-    end
 
     def rotate_90
       self.angle ||= 0

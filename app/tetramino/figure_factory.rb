@@ -67,6 +67,227 @@ module Tetramino
       make_figure(path, grid_mask)
     end
 
+    def book
+      path = @figures_folder_path + "book.png"
+      grid_mask = [[true]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def camera
+      path = @figures_folder_path + "camera.png"
+      grid_mask = [[true]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def dau_cloth
+      path = @figures_folder_path + "dau_cloth.png"
+      grid_mask = [[true, true],
+                   [true, true]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def fan
+      path = @figures_folder_path + "fan_L.png"
+      grid_mask = [[true, true],
+                   [true, false]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def hangers
+      path = @figures_folder_path + "hangers.png"
+      grid_mask = [[true, true, true],
+                   [false, true, false]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def jacket
+      path = @figures_folder_path + "jacket.png"
+      grid_mask = [[true, true, true]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def medkit
+      path = @figures_folder_path + "medkit.png"
+      grid_mask = [[true, true, true]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def dau_penal
+      path = @figures_folder_path + "pink_penal.png"
+      grid_mask = [[true, true]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def wif_penal
+      path = @figures_folder_path + "red_penal.png"
+      grid_mask = [[true, true]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def dau_boots
+      path = @figures_folder_path + "pink_snikers.png"
+      grid_mask = [[false, true, true],
+                   [true, true, false]]
+
+      make_figure(path, grid_mask)
+    end
+
+
+    def dau_tall_boots
+      path = @figures_folder_path + "pink_tall_boots.png"
+      grid_mask = [[true, true],
+                   [true, false],
+                   [true, false],]
+
+      make_figure(path, grid_mask)
+    end
+
+    def wif_hat
+      path = @figures_folder_path + "red_hat.png"
+      grid_mask = [[true, true, true],
+                   [false, true, false]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def wif_shoes
+      path = @figures_folder_path + "red_shoes.png"
+      grid_mask = [[false, true, true],
+                   [true, true, false]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def wif_tall_boots
+      path = @figures_folder_path + "red_tall_boots.png"
+      grid_mask = [[true, true],
+                   [true, false],
+                   [true, false],]
+
+      make_figure(path, grid_mask)
+    end
+
+    def steam_gen
+      path = @figures_folder_path + "steam_gen.png"
+      grid_mask = [[true, true],
+                   [true, false]]
+
+      make_figure(path, grid_mask)
+    end
+
+
+    def towel
+      path = @figures_folder_path + "towel.png"
+      grid_mask = [[true, true, true, true]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def yoga_carpet
+      path = @figures_folder_path + "yoga_carpet.png"
+      grid_mask = [[true, true, true, true]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def wif_cloth
+      path = @figures_folder_path + "wif_cloth.png"
+      grid_mask = [[true, true],
+                   [true, true]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def antifreez
+      path = @figures_folder_path + "antifreez.png"
+      grid_mask = [[true]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def domcrat
+      path = @figures_folder_path + "domcrat.png"
+      grid_mask = [[false, true],
+                   [true, true],
+                   [false, true],]
+
+      make_figure(path, grid_mask)
+    end
+
+    def extinguisher
+      path = @figures_folder_path + "extinguisher.png"
+      grid_mask = [[false, true]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def fomka
+      path = @figures_folder_path + "fomka.png"
+      grid_mask = [[true, true],
+                   [true, false ]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def gray_bag
+      path = @figures_folder_path + "gray_bag.png"
+      grid_mask = [[true, true],
+                   [true, true],
+                   [true, true]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def hatch
+      path = @figures_folder_path + "hatch.png"
+      grid_mask = [[true, true],
+                   [false, true]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def pink_bag
+      path = @figures_folder_path + "pink_bag.png"
+      grid_mask = [[true, true, true],
+                   [true, true, true],
+                   [true, true, true]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def ski
+      path = @figures_folder_path + "ski.png"
+      grid_mask = [[true, true, true, true]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def snowboard
+      path = @figures_folder_path + "snowboard.png"
+      grid_mask = [[true],
+                   [true],
+                   [true],
+                   [true]]
+
+      make_figure(path, grid_mask)
+    end
+
+    def thermos
+      path = @figures_folder_path + "thermos.png"
+      grid_mask = [[true, true]]
+
+      make_figure(path, grid_mask)
+    end
+
     private
 
     def make_figure(path, grid_mask)
